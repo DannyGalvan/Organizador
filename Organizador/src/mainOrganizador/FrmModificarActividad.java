@@ -4,6 +4,9 @@
  */
 package mainOrganizador;
 
+import java.awt.HeadlessException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author cgalv
@@ -86,6 +89,11 @@ public class FrmModificarActividad extends javax.swing.JFrame {
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mainOrganizador/imagenes/modificar.png"))); // NOI18N
         jButton2.setText("Modificar actividad");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -142,6 +150,25 @@ public class FrmModificarActividad extends javax.swing.JFrame {
             frm.setVisible(true);
             this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+         try{           
+            String nombre = txtNombre.getText().trim();
+            String estado = cbEstado.getSelectedItem().toString();
+            if (!nombre.isBlank() && !nombre.isEmpty() && nombre.length() > 0) {
+                String id = EstadoGlobal.TransferenciaActividades.getId();
+                EstadoGlobal.TransferenciaListadoActividades.modificarActividades(id, nombre, estado);
+                JOptionPane.showMessageDialog(null, "Actividad Modificada Con Exito");
+                txtNombre.setText("");
+           }else{
+                 JOptionPane.showMessageDialog(null, "No Puedes Dejar El Nombre Vacio");
+                txtNombre.setText("");
+           }
+            
+       }catch(NumberFormatException | HeadlessException ex){
+            JOptionPane.showMessageDialog(null, "Error " + ex.getMessage());
+       }   
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

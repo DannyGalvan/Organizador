@@ -148,7 +148,7 @@ public class FrmModificarListaActividades extends javax.swing.JFrame {
             
        }catch(NumberFormatException | HeadlessException ex){
             JOptionPane.showMessageDialog(null, "Error " + ex.getMessage());
-       }        // TODO add your handling code here:
+       }        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

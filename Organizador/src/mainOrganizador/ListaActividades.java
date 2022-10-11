@@ -207,9 +207,10 @@ public class ListaActividades {
         }
     }
     
-     public void modificarListas(String id, String nombre){
-         Actividades lista = this.BuscarLista(id);    
-         lista.setNombre(nombre);        
+     public void modificarActividades(String id, String nombre, String estado){
+         Actividades lista = this.BuscarActividad(id);    
+         lista.setNombre(nombre);   
+         lista.setEstado(estado);
          EstadoGlobal.TransferenciaActividades = lista;
          
          ArrayList<Actividades> newList = new ArrayList<>();
@@ -221,8 +222,23 @@ public class ListaActividades {
          this.crearArchivo(newList);         
      }
      
-      public Actividades BuscarLista(String id) {  
-        this.Actividades = this.leerTareasLista();
+     public void eliminarActividades(String id){
+         Actividades lista = this.BuscarActividad(id);    
+         Actividades.removeIf(x -> x.getId().equals(id));
+         
+         EstadoGlobal.TransferenciaActividades = new Actividades();
+         
+         ArrayList<Actividades> newList = new ArrayList<>();
+         
+         for(int i=0; i<Actividades.size(); i++){
+             Actividades item = Actividades.get(i);
+             newList.add(item);
+         }
+         this.crearArchivo(newList);         
+     }
+     
+      public Actividades BuscarActividad(String id) {  
+        Actividades = this.leerTareasLista();
         Optional<Actividades> lista = this.Actividades.stream()
             .filter(p -> p.getId().equals(id))
             .findFirst();
@@ -231,7 +247,7 @@ public class ListaActividades {
     }
       
       public long CompletadoLista() {  
-        this.Actividades = this.leerTareasLista();
+        Actividades = this.leerTareasLista();
         long list = Actividades.stream().filter(x->x.getEstado().equals("Completada")).count();
         System.out.println("cantidad actividades es: " + Actividades.size() + " tamanio filter: " + list);
         return list;
