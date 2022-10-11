@@ -12,7 +12,7 @@ public class Actividades {
     private String Id;
     private String IdListaActividades;
     private String Nombre;
-    private int Estado;
+    private String Estado;
 
     /**
      * @return the Id
@@ -59,14 +59,14 @@ public class Actividades {
     /**
      * @return the Estado
      */
-    public int getEstado() {
+    public String getEstado() {
         return Estado;
     }
 
     /**
      * @param Estado the Estado to set
      */
-    public void setEstado(int Estado) {
+    public void setEstado(String Estado) {
         this.Estado = Estado;
     }
     

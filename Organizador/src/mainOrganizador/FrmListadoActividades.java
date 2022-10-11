@@ -25,7 +25,7 @@ public class FrmListadoActividades extends javax.swing.JFrame {
         setLocationRelativeTo(this);
         lista = EstadoGlobal.TransferenciaListadoActividades;
         txtNombre.setText(lista.getNombreLista());
-        txtPorcentaje.setText(String.valueOf(lista.getPorcentaje()));
+        txtPorcentaje.setText(String.format("%.02f",lista.getPorcentaje()) + " %");
     }
 
     /**
@@ -37,6 +37,7 @@ public class FrmListadoActividades extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem1 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -47,9 +48,11 @@ public class FrmListadoActividades extends javax.swing.JFrame {
         txtPorcentaje = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+
+        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -98,6 +101,11 @@ public class FrmListadoActividades extends javax.swing.JFrame {
         });
 
         jButton3.setText("Eliminar esta lista");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         txtNombre.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         txtNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -108,11 +116,16 @@ public class FrmListadoActividades extends javax.swing.JFrame {
 
         jMenu1.setText("Actividades");
 
-        jMenuItem1.setText("Agregar Actividades");
-        jMenu1.add(jMenuItem1);
+        jMenuItem4.setText("Agregar Actividades");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem4);
 
-        jMenuItem2.setText("Listar Actividades");
-        jMenu1.add(jMenuItem2);
+        jMenuItem5.setText("Listar Actividades");
+        jMenu1.add(jMenuItem5);
 
         jMenuBar1.add(jMenu1);
 
@@ -205,6 +218,16 @@ public class FrmListadoActividades extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+      
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        FrmAgregarActividades frm = new FrmAgregarActividades();
+        frm.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -251,7 +274,8 @@ public class FrmListadoActividades extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel txtNombre;
     private javax.swing.JLabel txtPorcentaje;

@@ -53,9 +53,16 @@ public class FrmListarListaActividades extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         tblListaActividades.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -64,6 +71,13 @@ public class FrmListarListaActividades extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(tblListaActividades);
+        if (tblListaActividades.getColumnModel().getColumnCount() > 0) {
+            tblListaActividades.getColumnModel().getColumn(0).setResizable(false);
+            tblListaActividades.getColumnModel().getColumn(0).setPreferredWidth(1);
+            tblListaActividades.getColumnModel().getColumn(1).setResizable(false);
+            tblListaActividades.getColumnModel().getColumn(2).setResizable(false);
+            tblListaActividades.getColumnModel().getColumn(2).setPreferredWidth(10);
+        }
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mainOrganizador/imagenes/exit1.png"))); // NOI18N
         jButton1.setText("Regresar");
@@ -160,7 +174,7 @@ public class FrmListarListaActividades extends javax.swing.JFrame {
         for(int i=0;i<cantidadTableros;i++){
             datos[0]= String.valueOf(lista.get(i).getIdLista());
             datos[1]= lista.get(i).getNombreLista();
-            datos[2]= String.valueOf(100 + "%");
+            datos[2]= String.format("%.02f",lista.get(i).getPorcentaje()) + " %";
             modelo.addRow(datos);            
         }      
     }

@@ -9,9 +9,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 /**
  *
@@ -22,7 +24,7 @@ public class ListaActividades {
     private String idTarea;
     private String idTablero;
     private String NombreLista;
-    private Float Porcentaje;
+    private float Porcentaje;
     private ArrayList<Actividades> Actividades = new ArrayList();
 
     /**
@@ -84,14 +86,22 @@ public class ListaActividades {
     /**
      * @return the Porcentaje
      */
-    public Float getPorcentaje() {
-        return Porcentaje;
+    public float getPorcentaje() {
+        float completado;
+        completado = CompletadoLista();  
+        Actividades = this.leerTareasLista();
+        if (Actividades.isEmpty()) {
+            return 100;
+        }
+        else{
+            return completado / Actividades.size() * 100;
+        }
     }
 
     /**
      * @param Porcentaje the Porcentaje to set
      */
-    public void setPorcentaje(Float Porcentaje) {
+    public void setPorcentaje(float Porcentaje) {
         this.Porcentaje = Porcentaje;
     }
     
@@ -142,7 +152,7 @@ public class ListaActividades {
                 e.setId(delimitar.next());
                 e.setIdListaActividades(delimitar.next());
                 e.setNombre(delimitar.next());
-                e.setEstado(Integer.parseInt(delimitar.next()));
+                e.setEstado(delimitar.next());
                 listaTareas.add(e);                
             }
             this.Actividades = listaTareas;
@@ -187,7 +197,7 @@ public class ListaActividades {
         }
     }
 
-    public void eliminarActividadesLista() {
+    public void eliminarTodasActividadesLista() {
         File archivo = new File("C:/Organizador/Actividades/" + this.idLista + ".txt");
         System.out.println("eliminacion de tareas de la lista " + this.NombreLista);
         if (archivo.delete()) {
@@ -212,11 +222,19 @@ public class ListaActividades {
      }
      
       public Actividades BuscarLista(String id) {  
+        this.Actividades = this.leerTareasLista();
         Optional<Actividades> lista = this.Actividades.stream()
             .filter(p -> p.getId().equals(id))
             .findFirst();
         System.out.println("la actividad es: " + lista.get().getNombre());
         return lista.isPresent() ? lista.get() : null;
+    }
+      
+      public long CompletadoLista() {  
+        this.Actividades = this.leerTareasLista();
+        long list = Actividades.stream().filter(x->x.getEstado().equals("Completada")).count();
+        System.out.println("cantidad actividades es: " + Actividades.size() + " tamanio filter: " + list);
+        return list;
     }
    
 }
