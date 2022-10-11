@@ -90,7 +90,8 @@ public class FrmTarea extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        jButton1.setText("Regresar a lista de tareas");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mainOrganizador/imagenes/exit1.png"))); // NOI18N
+        jButton1.setText("Regresar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -230,7 +231,8 @@ public class FrmTarea extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jButton2.setText("Modificar esta tarea");
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mainOrganizador/imagenes/modificar.png"))); // NOI18N
+        jButton2.setText("Modificar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -346,7 +348,12 @@ public class FrmTarea extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-          ListadoTarea frm = new ListadoTarea();
+          FrmListarTareas frm = null;
+        try {
+            frm = new FrmListarTareas();
+        } catch (ParseException ex) {
+            Logger.getLogger(FrmTarea.class.getName()).log(Level.SEVERE, null, ex);
+        }
           frm.setVisible(true);
           this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed

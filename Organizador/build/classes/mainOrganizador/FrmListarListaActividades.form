@@ -147,7 +147,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="LISTAR LISTADO DE ACTIVIDADES"/>
+            <Property name="text" type="java.lang.String" value="LISTAR LISTADO DE ACTIVIDADES, CLICK PARA VER UNA"/>
           </Properties>
         </Component>
       </SubComponents>

@@ -21,7 +21,7 @@ public class FrmListarListaActividades extends javax.swing.JFrame {
     public FrmListarListaActividades() {
         initComponents();
         setLocationRelativeTo(this);
-        listarTablerosTareas();
+        listarListaActividades();
     }
 
     /** This method is called from within the constructor to
@@ -92,7 +92,7 @@ public class FrmListarListaActividades extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("LISTAR LISTADO DE ACTIVIDADES");
+        jLabel1.setText("LISTAR LISTADO DE ACTIVIDADES, CLICK PARA VER UNA");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -166,7 +166,7 @@ public class FrmListarListaActividades extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public void listarTablerosTareas(){       
+    public void listarListaActividades(){       
         ArrayList<ListaActividades> lista = EstadoGlobal.TransferenciaTarea.leerTareasLista();
         int cantidadTableros = lista.size();
         DefaultTableModel modelo = (DefaultTableModel) tblListaActividades.getModel();        
