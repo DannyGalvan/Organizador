@@ -220,7 +220,12 @@ public class FrmListadoActividades extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-      
+         String id = EstadoGlobal.TransferenciaListadoActividades.getIdLista();
+         EstadoGlobal.TransferenciaTarea.eliminarListaActividades(id);
+         JOptionPane.showMessageDialog(null, "Lista Actividades eliminada con exito!");  
+         FrmListarListaActividades frm = new FrmListarListaActividades();
+         frm.setVisible(true);
+         this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed

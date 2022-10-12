@@ -256,7 +256,11 @@ public class Tarea {
         }
     }
 
-    public void eliminarTareasLista() {
+    public void eliminarTodasListaActividades() {
+        listaActividades = this.leerTareasLista();
+        for(ListaActividades tareas: listaActividades){
+            tareas.eliminarTodasActividadesLista();
+        }
         File archivo = new File("C:/Organizador/ListaActividades/" + this.Id + ".txt");
         System.out.println("eliminacion de tareas de la lista " + this.Nombre);
         if (archivo.delete()) {
@@ -265,6 +269,19 @@ public class Tarea {
             System.out.println("El fichero de listas de actividades no puede ser borrado");
         }
     }
+    
+      public void eliminarListaActividades(String id){       
+         ListaActividades listado = this.BuscarLista(id);
+         listado.eliminarTodasActividadesLista();
+         listaActividades.removeIf(x -> x.getIdLista().equals(id));
+         ArrayList<ListaActividades> newList = new ArrayList<>();
+         
+         for(int i=0; i<listaActividades.size(); i++){
+             ListaActividades item = listaActividades.get(i);
+             newList.add(item);
+         }
+         this.crearArchivo(newList);
+     }
     
      public void modificarListas(String id, String nombre){
          ListaActividades lista = this.BuscarLista(id);    
