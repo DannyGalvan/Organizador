@@ -411,7 +411,7 @@ public class Tarea {
     
       public void eliminarComentario(String id){       
          Comentarios.removeIf(x -> x.getIdComentario().equals(id));
-         ArrayList<Comentarios> newList = new ArrayList<>();
+         ArrayList<Comentarios> newList = new ArrayList();
          
          for(int i=0; i<Comentarios.size(); i++){
              Comentarios item = Comentarios.get(i);
@@ -425,7 +425,7 @@ public class Tarea {
          lista.setComentario(nombre);        
          EstadoGlobal.TransferenciaComentarios = lista;
          
-         ArrayList<Comentarios> newList = new ArrayList<>();
+         ArrayList<Comentarios> newList = new ArrayList();
          
          for(int i=0; i<Comentarios.size(); i++){
              Comentarios item = Comentarios.get(i);

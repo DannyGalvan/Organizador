@@ -90,7 +90,7 @@ public final class FrmListarListadoTareas extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblListadoListaTareas);
 
         btnRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mainOrganizador/imagenes/exit1.png"))); // NOI18N
-        btnRegresar.setText("REGRESAR");
+        btnRegresar.setText("Regresar");
         btnRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegresarActionPerformed(evt);

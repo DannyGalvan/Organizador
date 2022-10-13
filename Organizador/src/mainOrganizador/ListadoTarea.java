@@ -64,7 +64,8 @@ public class ListadoTarea extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mainOrganizador/imagenes/cursos-programacion.png"))); // NOI18N
 
-        jButton2.setText("Eliminar esta lista");
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mainOrganizador/imagenes/cerrar.png"))); // NOI18N
+        jButton2.setText("Eliminar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
