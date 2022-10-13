@@ -194,8 +194,9 @@ public class ListadoTareas {
 
     public void eliminarTareasLista() {
         Tareas = this.leerTareasLista();
-        for(Tarea tareas: Tareas){
-            tareas.eliminarTodasListaActividades();
+        for(Tarea tareas: Tareas){        
+            tareas.eliminarTodosComentarios();
+            tareas.eliminarTodasListaActividades();            
         }
         File archivo = new File("C:/Organizador/Tareas/" + this.IdListadoTareas + ".txt");
         System.out.println("eliminacion de tareas de la lista " + this.NombreListado);
@@ -258,6 +259,7 @@ public class ListadoTareas {
       public void eliminarTarea(String id){       
          Tarea tarea = this.BuscarTarea(id);
          tarea.eliminarTodasListaActividades();
+         tarea.eliminarTodosComentarios();
          this.Tareas.removeIf(x -> x.getId().equals(id));
          ArrayList<Tarea> newList = new ArrayList<>();
          

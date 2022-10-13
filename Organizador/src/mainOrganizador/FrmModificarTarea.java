@@ -23,9 +23,13 @@ public class FrmModificarTarea extends javax.swing.JFrame {
     /**
      * Creates new form FrmModificarTarea
      */
+    Tarea tarea = new Tarea();
     public FrmModificarTarea() {
         initComponents();
         setLocationRelativeTo(this);
+        tarea = EstadoGlobal.TransferenciaTarea;
+        txtNombreTarea.setText(tarea.getNombre());
+        txtDescripcionTarea.setText(tarea.getDescripcion());
     }
 
     /**

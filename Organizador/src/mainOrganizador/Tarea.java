@@ -30,6 +30,7 @@ public class Tarea {
     private String FechaFinal;
     private String Vigencia;
     private ArrayList<ListaActividades> listaActividades = new ArrayList();
+    private ArrayList<Comentarios> Comentarios = new ArrayList();
     /**
      * @return the Id
      */
@@ -302,6 +303,142 @@ public class Tarea {
             .filter(p -> p.getIdLista().equals(id))
             .findFirst();
         System.out.println("la lista de actividades es: " + lista.get().getNombreLista());
+        return lista.isPresent() ? lista.get() : null;
+    }
+      
+      
+    
+    public void crearComentarios(ArrayList<Comentarios> lista) {
+		FileWriter flwriter = null;
+		try {
+			//crea el flujo para escribir en el archivo
+			flwriter = new FileWriter("C:/Organizador/Comentarios/" + this.Id + ".txt");
+                    try ( //crea un buffer o flujo intermedio antes de escribir directamente en el archivo
+                            BufferedWriter bfwriter = new BufferedWriter(flwriter)) {
+                        for (Comentarios actividades : lista) {
+                            //escribe los datos en el archivo
+                           bfwriter.write(actividades.getIdComentario() + "|" + actividades.getIdTarea() + "|" + actividades.getComentario() + "\n");
+                        }
+                        //cierra el buffer intermedio
+                    }
+			System.out.println("comentarios creados satisfactoriamente..");
+
+		} catch (IOException e) {
+		} finally {
+			if (flwriter != null) {
+				try {//cierra el flujo principal
+					flwriter.close();
+				} catch (IOException e) {
+				}
+			}
+		}
+    }
+
+    public ArrayList leerComentariosTarea() {
+        // crea el flujo para leer desde el archivo
+
+        File file = new File("C:/Organizador/Comentarios/" + this.Id + ".txt");
+        ArrayList listaTareas = new ArrayList<Comentarios>();
+        Scanner scanner;
+        try {
+            //se pasa el flujo al objeto scanner
+            scanner = new Scanner(file);
+            while (scanner.hasNextLine()) {
+                // el objeto scanner lee linea a linea desde el archivo
+                String linea = scanner.nextLine();
+                Scanner delimitar = new Scanner(linea);
+                //se usa una expresión regular
+                //que valida que antes o despues de un pipe (|) exista cualquier cosa
+                //parte la cadena recibida cada vez que encuentre un pipe				
+                delimitar.useDelimiter("\\s*\\|\\s*");
+                Comentarios e = new Comentarios();
+                e.setIdComentario(delimitar.next());
+                e.setIdTarea(delimitar.next());
+                e.setComentario(delimitar.next());
+                listaTareas.add(e);                
+            }
+            this.Comentarios = listaTareas;
+            //se cierra el ojeto scanner
+            scanner.close();
+            System.out.println("comentarios leidos satisfactoriamente..");
+        } catch (FileNotFoundException e) {
+            System.out.println(e);
+            this.Comentarios = new ArrayList<Comentarios>();
+        }
+        return Comentarios;
+    }
+
+    //añadir más tareas al archivo
+    public void aniadirComentariosTarea(ArrayList<Comentarios> lista) {
+        File directorio = new File("C:/Organizador/Comentarios");
+        if (!directorio.exists()) {
+            if (directorio.mkdirs()) {
+                System.out.println("Directorio creado");
+            } else {
+                System.out.println("Error al crear directorio");
+            }
+        }
+        FileWriter flwriter = null;
+        try {//además de la ruta del archivo recibe un parámetro de tipo boolean, que le indican que se va añadir más registros 
+            flwriter = new FileWriter("C:/Organizador/Comentarios/" + this.Id + ".txt", true);
+            try ( BufferedWriter bfwriter = new BufferedWriter(flwriter)) {
+                for (Comentarios actividades : lista) {
+                    //escribe los datos en el archivo
+                   bfwriter.write(actividades.getIdComentario() + "|" + actividades.getIdTarea() + "|" + actividades.getComentario() + "\n");
+                }
+            }
+            System.out.println("comentarios modificados satisfactoriamente..");
+        } catch (IOException e) {
+        } finally {
+            if (flwriter != null) {
+                try {
+                    flwriter.close();
+                } catch (IOException e) {
+                }
+            }
+        }
+    }
+
+    public void eliminarTodosComentarios() {
+        File archivo = new File("C:/Organizador/Comentarios/" + this.Id + ".txt");
+        System.out.println("eliminacion de comentarios de la tarea " + this.Nombre);
+        if (archivo.delete()) {
+            System.out.println("El fichero de comentarios ha sido borrado satisfactoriamente");
+        } else {
+            System.out.println("El fichero de comentarios no puede ser borrado");
+        }
+    }
+    
+      public void eliminarComentario(String id){       
+         Comentarios.removeIf(x -> x.getIdComentario().equals(id));
+         ArrayList<Comentarios> newList = new ArrayList<>();
+         
+         for(int i=0; i<Comentarios.size(); i++){
+             Comentarios item = Comentarios.get(i);
+             newList.add(item);
+         }
+         this.crearComentarios(newList);
+     }
+    
+     public void modificarComentarios(String id, String nombre){
+         Comentarios lista = this.BuscarComentario(id);    
+         lista.setComentario(nombre);        
+         EstadoGlobal.TransferenciaComentarios = lista;
+         
+         ArrayList<Comentarios> newList = new ArrayList<>();
+         
+         for(int i=0; i<Comentarios.size(); i++){
+             Comentarios item = Comentarios.get(i);
+             newList.add(item);
+         }
+         this.crearComentarios(newList);         
+     }
+     
+      public Comentarios BuscarComentario(String id) {  
+        Optional<Comentarios> lista = this.Comentarios.stream()
+            .filter(p -> p.getIdComentario().equals(id))
+            .findFirst();
+        System.out.println("el comentario es: " + lista.get().getComentario());
         return lista.isPresent() ? lista.get() : null;
     }
     
