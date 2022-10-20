@@ -23,7 +23,7 @@ public class ListadoTareas {
     private String IdListadoTareas;
     private String IdTableroTareas;
     private String NombreListado;
-    private ArrayList<Tarea> Tareas;
+    private ArrayList<Tarea> Tareas = new ArrayList();
     private int TotalTareas;
 
     /**

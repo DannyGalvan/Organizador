@@ -24,3 +24,5 @@ hs_err_pid*
 /Organizador/dist/
 /Organizador/build/
 /Organizador/nbproject/private/
+/Organizador/src/Packages/Calendario/pedidos/build/
+/Organizador/src/Packages/Calendario/pedidos/nbproject/private/

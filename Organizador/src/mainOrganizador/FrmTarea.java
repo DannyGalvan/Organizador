@@ -276,9 +276,16 @@ public class FrmTarea extends javax.swing.JFrame {
                 "Id", "Descripcion"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -292,6 +299,7 @@ public class FrmTarea extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblComentarios);
         if (tblComentarios.getColumnModel().getColumnCount() > 0) {
             tblComentarios.getColumnModel().getColumn(0).setResizable(false);
+            tblComentarios.getColumnModel().getColumn(1).setResizable(false);
         }
 
         jLabel8.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
