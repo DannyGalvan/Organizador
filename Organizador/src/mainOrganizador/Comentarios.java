@@ -9,7 +9,6 @@ package mainOrganizador;
  * @author cgalv
  */
 public class Comentarios {
-
     private String IdComentario;
     private String IdTarea;
     private String Comentario;
@@ -55,5 +54,4 @@ public class Comentarios {
     public void setComentario(String Comentario) {
         this.Comentario = Comentario;
     }
-
 }

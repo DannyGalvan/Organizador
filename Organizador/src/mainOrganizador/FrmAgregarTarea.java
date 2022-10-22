@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author CesarCuellar
+ * @author cgalv
  */
 public class FrmAgregarTarea extends javax.swing.JFrame {
     /**

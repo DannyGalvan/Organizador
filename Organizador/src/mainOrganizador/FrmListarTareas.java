@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author CesarCuellar
+ * @author cgalv
  */
 public class FrmListarTareas extends javax.swing.JFrame {
 

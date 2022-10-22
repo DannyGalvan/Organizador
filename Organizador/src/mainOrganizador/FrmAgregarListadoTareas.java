@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author CesarCuellar
+ * @author cgalv
  */
 public class FrmAgregarListadoTareas extends javax.swing.JFrame {
 

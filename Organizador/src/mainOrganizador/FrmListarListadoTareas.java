@@ -12,7 +12,7 @@ import jdk.nashorn.internal.objects.NativeArray;
 
 /**
  *
- * @author CesarCuellar
+ * @author cgalv
  */
 public final class FrmListarListadoTareas extends javax.swing.JFrame {    
     /**
